@@ -57,6 +57,7 @@ jobs:
           QT_ARCH:   ${{ steps.qt-5_15_2.outputs.version }}
           QT_HOST:   ${{ steps.qt-5_15_2.outputs.host    }}
           QT_PATH:   ${{ steps.qt-5_15_2.outputs.qt-path }}
+        shell: bash
         run: |
           set -u
   
@@ -83,6 +84,7 @@ jobs:
           QT_ARCH:   ${{ steps.qt-6_8_0.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_0.outputs.host    }}
           QT_PATH:   ${{ steps.qt-6_8_0.outputs.qt-path }}
+        shell: bash
         run: |
           set -u
   
@@ -109,6 +111,7 @@ jobs:
           QT_ARCH:   ${{ steps.qt-6_8_1.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_1.outputs.host    }}
           QT_PATH:   ${{ steps.qt-6_8_1.outputs.qt-path }}
+        shell: bash
         run: |
           set -u
   
@@ -135,6 +138,7 @@ jobs:
           QT_ARCH:   ${{ steps.qt-6_8_3.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_3.outputs.host    }}
           QT_PATH:   ${{ steps.qt-6_8_3.outputs.qt-path }}
+        shell: bash
         run: |
           set -u
   
