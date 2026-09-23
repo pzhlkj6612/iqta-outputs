@@ -50,7 +50,12 @@ jobs:
 
       - name: Check Qt 5.15.2
         env:
-          QT_PATH: '${{ steps.qt-5_15_2.outputs.qtPath }}'
+          OLD_QT_PATH: '${{ steps.qt-5_15_2.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-5_15_2.outputs.version }}
+          QT_TARGET: ${{ steps.qt-5_15_2.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-5_15_2.outputs.version }}
+          QT_HOST:   ${{ steps.qt-5_15_2.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-5_15_2.outputs.qt-path }}
         run: |
           printenv | sort
 
@@ -64,7 +69,12 @@ jobs:
 
       - name: Check Qt 6.8.1
         env:
-          QT_PATH: '${{ steps.qt-6_8_1.outputs.qtPath }}'
+          OLD_QT_PATH: '${{ steps.qt-6_8_1.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-6_8_1.outputs.version }}
+          QT_TARGET: ${{ steps.qt-6_8_1.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-6_8_1.outputs.version }}
+          QT_HOST:   ${{ steps.qt-6_8_1.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-6_8_1.outputs.qt-path }}
         run: |
           printenv | sort
 
@@ -78,7 +88,12 @@ jobs:
 
       - name: Check Qt 6.8.3
         env:
-          QT_PATH: '${{ steps.qt-6_8_3.outputs.qtPath }}'
+          OLD_QT_PATH: '${{ steps.qt-6_8_3.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-6_8_3.outputs.version }}
+          QT_TARGET: ${{ steps.qt-6_8_3.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-6_8_3.outputs.version }}
+          QT_HOST:   ${{ steps.qt-6_8_3.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-6_8_3.outputs.qt-path }}
         run: |
           printenv | sort
 
