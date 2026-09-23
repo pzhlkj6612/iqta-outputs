@@ -15,14 +15,14 @@ jobs:
           - windows-11-arm
           - macos-26-intel
           - macos-26
-        repo:
+        ref:
           - 5527a0292e62299031937ff8360329f5aa5cc6e6 # master
           - 715a528dff4785bd5f790aab31be38dff3634263 # mine
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           repository: jurplel/install-qt-action
-          ref: ${{ matrix.repo }}
+          ref: ${{ matrix.ref }}
 
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
@@ -50,6 +50,7 @@ jobs:
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
       - name: Check Qt 5.15.2 desktop
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' }}
         env:
           OLD_QT_PATH: '${{ steps.qt-5_15_2.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-5_15_2.outputs.version }}
@@ -77,6 +78,7 @@ jobs:
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
       - name: Check Qt 6.8.0 android
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' }}
         env:
           OLD_QT_PATH: '${{ steps.qt-6_8_0.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-6_8_0.outputs.version }}
@@ -104,6 +106,7 @@ jobs:
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
       - name: Check Qt 6.8.1 android
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' }}
         env:
           OLD_QT_PATH: '${{ steps.qt-6_8_1.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-6_8_1.outputs.version }}
@@ -131,6 +134,7 @@ jobs:
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
       - name: Check Qt 6.8.3 desktop
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' }}
         env:
           OLD_QT_PATH: '${{ steps.qt-6_8_3.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-6_8_3.outputs.version }}
