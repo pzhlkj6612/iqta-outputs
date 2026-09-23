@@ -17,6 +17,7 @@ jobs:
           - macos-26
         repo:
           - 5527a0292e62299031937ff8360329f5aa5cc6e6 # master
+          - b68fef8864695cb237304e46c71475cdf89674ce # mine
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -39,6 +40,20 @@ jobs:
           git status --porcelain
         shell: bash
 
+      - name: Install Qt 5.15.2
+        id: qt-5_15_2
+        uses: ./
+        with:
+          version: 5.15.2
+          target: android
+          # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+
+      - name: Check Qt 5.15.2
+        env:
+          QT_PATH: '${{ steps.qt-5_15_2.outputs.qtPath }}'
+        run: |
+          printenv | sort
+
       - name: Install Qt 6.8.1
         id: qt-6_8_1
         uses: ./
@@ -47,7 +62,7 @@ jobs:
           target: android
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
-      - name: Check output
+      - name: Check Qt 6.8.1
         env:
           QT_PATH: '${{ steps.qt-6_8_1.outputs.qtPath }}'
         run: |
@@ -61,13 +76,13 @@ jobs:
           target: android
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
-      - name: Check output
+      - name: Check Qt 6.8.3
         env:
           QT_PATH: '${{ steps.qt-6_8_3.outputs.qtPath }}'
         run: |
           printenv | sort
 
-      - name: Inspect
+      - name: Inspect all
         run: |
           find ../Qt
         shell: bash
