@@ -17,7 +17,7 @@ jobs:
           - macos-26
         repo:
           - 5527a0292e62299031937ff8360329f5aa5cc6e6 # master
-          - b68fef8864695cb237304e46c71475cdf89674ce # mine
+          - 715a528dff4785bd5f790aab31be38dff3634263 # mine
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -40,15 +40,15 @@ jobs:
           git status --porcelain
         shell: bash
 
-      - name: Install Qt 5.15.2
+      - name: Install Qt 5.15.2 desktop
         id: qt-5_15_2
         uses: ./
         with:
-          version: 5.15.2
-          target: android
+          version: '>=5.15,<6'
+          target: desktop
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
-      - name: Check Qt 5.15.2
+      - name: Check Qt 5.15.2 desktop
         env:
           OLD_QT_PATH: '${{ steps.qt-5_15_2.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-5_15_2.outputs.version }}
@@ -57,44 +57,91 @@ jobs:
           QT_HOST:   ${{ steps.qt-5_15_2.outputs.host    }}
           QT_PATH:   ${{ steps.qt-5_15_2.outputs.qt-path }}
         run: |
+          set -u
+  
+          echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
+          has been successfully installed in '$QT_PATH'."
+  
+          ls -l "$QT_PATH"
+
           printenv | sort
 
-      - name: Install Qt 6.8.1
-        id: qt-6_8_1
+      - name: Install Qt 6.8.0 android
+        id: qt-6_8_0
         uses: ./
         with:
-          version: 6.8.1
+          version: '>6.7,<6.8.1'
           target: android
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
-      - name: Check Qt 6.8.1
+      - name: Check Qt 6.8.0 android
+        env:
+          OLD_QT_PATH: '${{ steps.qt-6_8_0.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-6_8_0.outputs.version }}
+          QT_TARGET: ${{ steps.qt-6_8_0.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-6_8_0.outputs.arch    }}
+          QT_HOST:   ${{ steps.qt-6_8_0.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-6_8_0.outputs.qt-path }}
+        run: |
+          set -u
+  
+          echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
+          has been successfully installed in '$QT_PATH'."
+  
+          ls -l "$QT_PATH"
+
+          printenv | sort
+
+      - name: Install Qt 6.8.1 android
+        id: qt-6_8_1
+        uses: ./
+        with:
+          version: '<6.8.2'
+          target: android
+          # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+
+      - name: Check Qt 6.8.1 android
         env:
           OLD_QT_PATH: '${{ steps.qt-6_8_1.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-6_8_1.outputs.version }}
           QT_TARGET: ${{ steps.qt-6_8_1.outputs.target  }}
-          QT_ARCH:   ${{ steps.qt-6_8_1.outputs.version }}
+          QT_ARCH:   ${{ steps.qt-6_8_1.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_1.outputs.host    }}
           QT_PATH:   ${{ steps.qt-6_8_1.outputs.qt-path }}
         run: |
+          set -u
+  
+          echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
+          has been successfully installed in '$QT_PATH'."
+  
+          ls -l "$QT_PATH"
+
           printenv | sort
 
-      - name: Install Qt 6.8.3
+      - name: Install Qt 6.8.3 desktop
         id: qt-6_8_3
         uses: ./
         with:
-          version: 6.8.3
-          target: android
+          version: '<6.9'
+          target: desktop
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
-      - name: Check Qt 6.8.3
+      - name: Check Qt 6.8.3 desktop
         env:
           OLD_QT_PATH: '${{ steps.qt-6_8_3.outputs.qtPath }}'
           QT_VER:    ${{ steps.qt-6_8_3.outputs.version }}
           QT_TARGET: ${{ steps.qt-6_8_3.outputs.target  }}
-          QT_ARCH:   ${{ steps.qt-6_8_3.outputs.version }}
+          QT_ARCH:   ${{ steps.qt-6_8_3.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_3.outputs.host    }}
           QT_PATH:   ${{ steps.qt-6_8_3.outputs.qt-path }}
         run: |
+          set -u
+  
+          echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
+          has been successfully installed in '$QT_PATH'."
+  
+          ls -l "$QT_PATH"
+
           printenv | sort
 
       - name: Inspect all
