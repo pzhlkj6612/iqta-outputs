@@ -41,23 +41,84 @@ jobs:
         shell: bash
 
       - name: Install Qt 5.15.2 desktop
-        id: qt-5_15_2
+        if: ${{ startsWith(matrix.os, 'macos') }}
+        id: qt-5_15_2-macos
         uses: ./
         with:
           version: '>=5.15,<6'
           target: desktop
-          host: linux  # workaround for arm64 hosts
+          host: mac
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
       - name: Check Qt 5.15.2 desktop
-        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' }}
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' && startsWith(matrix.os, 'macos') }}
         env:
-          OLD_QT_PATH: '${{ steps.qt-5_15_2.outputs.qtPath }}'
-          QT_VER:    ${{ steps.qt-5_15_2.outputs.version }}
-          QT_TARGET: ${{ steps.qt-5_15_2.outputs.target  }}
-          QT_ARCH:   ${{ steps.qt-5_15_2.outputs.version }}
-          QT_HOST:   ${{ steps.qt-5_15_2.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-5_15_2.outputs.qt-path }}
+          OLD_QT_PATH: '${{ steps.qt-5_15_2-macos.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-5_15_2-macos.outputs.version }}
+          QT_TARGET: ${{ steps.qt-5_15_2-macos.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-5_15_2-macos.outputs.version }}
+          QT_HOST:   ${{ steps.qt-5_15_2-macos.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-5_15_2-macos.outputs.qt-path }}
+        shell: bash
+        run: |
+          set -u
+  
+          echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
+          has been successfully installed in '$QT_PATH'."
+  
+          ls -l "$QT_PATH"
+
+          printenv | sort
+
+      - name: Install Qt 5.15.2 desktop
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+        id: qt-5_15_2-linux
+        uses: ./
+        with:
+          version: '>=5.15,<6'
+          target: desktop
+          host: linux
+          # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+
+      - name: Check Qt 5.15.2 desktop
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' && startsWith(matrix.os, 'ubuntu') }}
+        env:
+          OLD_QT_PATH: '${{ steps.qt-5_15_2-linux.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-5_15_2-linux.outputs.version }}
+          QT_TARGET: ${{ steps.qt-5_15_2-linux.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-5_15_2-linux.outputs.version }}
+          QT_HOST:   ${{ steps.qt-5_15_2-linux.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-5_15_2-linux.outputs.qt-path }}
+        shell: bash
+        run: |
+          set -u
+  
+          echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
+          has been successfully installed in '$QT_PATH'."
+  
+          ls -l "$QT_PATH"
+
+          printenv | sort
+
+      - name: Install Qt 5.15.2 desktop
+        if: ${{ startsWith(matrix.os, 'windows') }}
+        id: qt-5_15_2-windows
+        uses: ./
+        with:
+          version: '>=5.15,<6'
+          target: desktop
+          host: windows
+          # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
+
+      - name: Check Qt 5.15.2 desktop
+        if: ${{ matrix.ref != '5527a0292e62299031937ff8360329f5aa5cc6e6' && startsWith(matrix.os, 'windows') }}
+        env:
+          OLD_QT_PATH: '${{ steps.qt-5_15_2-windows.outputs.qtPath }}'
+          QT_VER:    ${{ steps.qt-5_15_2-windows.outputs.version }}
+          QT_TARGET: ${{ steps.qt-5_15_2-windows.outputs.target  }}
+          QT_ARCH:   ${{ steps.qt-5_15_2-windows.outputs.version }}
+          QT_HOST:   ${{ steps.qt-5_15_2-windows.outputs.host    }}
+          QT_PATH:   ${{ steps.qt-5_15_2-windows.outputs.qt-path }}
         shell: bash
         run: |
           set -u
