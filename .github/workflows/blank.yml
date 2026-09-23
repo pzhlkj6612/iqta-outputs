@@ -46,6 +46,7 @@ jobs:
         with:
           version: '>=5.15,<6'
           target: desktop
+          host: linux  # workaround for arm64 hosts
           # aqtsource: git+https://github.com/miurahr/aqtinstall.git@076e1659807d0b362a3ed684d54c2e9c775eb9c7
 
       - name: Check Qt 5.15.2 desktop
@@ -145,6 +146,7 @@ jobs:
           printenv | sort
 
       - name: Inspect all
+        if: always()
         run: |
           find ../Qt
         shell: bash
