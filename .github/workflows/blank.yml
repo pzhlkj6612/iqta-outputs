@@ -17,7 +17,7 @@ jobs:
           - macos-26
         ref:
           - 5527a0292e62299031937ff8360329f5aa5cc6e6 # master
-          - 4c463aba1514cfab64c070f2fd063d0b1ad38f95 # mine
+          - 24d6be9725383363b62c667ec7af6435e0ba4dd6 # mine
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
