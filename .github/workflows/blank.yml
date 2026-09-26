@@ -17,7 +17,7 @@ jobs:
           - macos-26
         ref:
           - 5527a0292e62299031937ff8360329f5aa5cc6e6 # master
-          - b7c810fd73cf82a2e44d14b1c762cf56584e4a92 # mine
+          - 4c463aba1514cfab64c070f2fd063d0b1ad38f95 # mine
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -58,15 +58,14 @@ jobs:
           QT_TARGET: ${{ steps.qt-5_15_2-macos.outputs.target  }}
           QT_ARCH:   ${{ steps.qt-5_15_2-macos.outputs.version }}
           QT_HOST:   ${{ steps.qt-5_15_2-macos.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-5_15_2-macos.outputs.qt-path }}
         shell: bash
         run: |
           set -u
   
           echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
-          has been successfully installed in '$QT_PATH'."
+          has been successfully installed in '$QT_ROOT_DIR'."
   
-          ls -l "$QT_PATH"
+          ls -l "$QT_ROOT_DIR"
 
           printenv | sort
 
@@ -88,15 +87,14 @@ jobs:
           QT_TARGET: ${{ steps.qt-5_15_2-linux.outputs.target  }}
           QT_ARCH:   ${{ steps.qt-5_15_2-linux.outputs.version }}
           QT_HOST:   ${{ steps.qt-5_15_2-linux.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-5_15_2-linux.outputs.qt-path }}
         shell: bash
         run: |
           set -u
   
           echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
-          has been successfully installed in '$QT_PATH'."
+          has been successfully installed in '$QT_ROOT_DIR'."
   
-          ls -l "$QT_PATH"
+          ls -l "$QT_ROOT_DIR"
 
           printenv | sort
 
@@ -118,15 +116,14 @@ jobs:
           QT_TARGET: ${{ steps.qt-5_15_2-windows.outputs.target  }}
           QT_ARCH:   ${{ steps.qt-5_15_2-windows.outputs.version }}
           QT_HOST:   ${{ steps.qt-5_15_2-windows.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-5_15_2-windows.outputs.qt-path }}
         shell: bash
         run: |
           set -u
   
           echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
-          has been successfully installed in '$QT_PATH'."
+          has been successfully installed in '$QT_ROOT_DIR'."
   
-          ls -l "$QT_PATH"
+          ls -l "$QT_ROOT_DIR"
 
           printenv | sort
 
@@ -146,15 +143,14 @@ jobs:
           QT_TARGET: ${{ steps.qt-6_8_0.outputs.target  }}
           QT_ARCH:   ${{ steps.qt-6_8_0.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_0.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-6_8_0.outputs.qt-path }}
         shell: bash
         run: |
           set -u
   
           echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
-          has been successfully installed in '$QT_PATH'."
+          has been successfully installed in '$QT_ROOT_DIR'."
   
-          ls -l "$QT_PATH"
+          ls -l "$QT_ROOT_DIR"
 
           printenv | sort
 
@@ -174,15 +170,14 @@ jobs:
           QT_TARGET: ${{ steps.qt-6_8_1.outputs.target  }}
           QT_ARCH:   ${{ steps.qt-6_8_1.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_1.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-6_8_1.outputs.qt-path }}
         shell: bash
         run: |
           set -u
   
           echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
-          has been successfully installed in '$QT_PATH'."
+          has been successfully installed in '$QT_ROOT_DIR'."
   
-          ls -l "$QT_PATH"
+          ls -l "$QT_ROOT_DIR"
 
           printenv | sort
 
@@ -202,15 +197,14 @@ jobs:
           QT_TARGET: ${{ steps.qt-6_8_3.outputs.target  }}
           QT_ARCH:   ${{ steps.qt-6_8_3.outputs.arch    }}
           QT_HOST:   ${{ steps.qt-6_8_3.outputs.host    }}
-          QT_PATH:   ${{ steps.qt-6_8_3.outputs.qt-path }}
         shell: bash
         run: |
           set -u
   
           echo "Qt $QT_VER ($QT_TARGET/$QT_ARCH on $QT_HOST) \
-          has been successfully installed in '$QT_PATH'."
+          has been successfully installed in '$QT_ROOT_DIR'."
   
-          ls -l "$QT_PATH"
+          ls -l "$QT_ROOT_DIR"
 
           printenv | sort
 
